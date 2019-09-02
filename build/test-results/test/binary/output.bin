@@ -1,0 +1,80 @@
+Ñ2019-09-02 15:58:10.873 [Test worker] INFO  ktor.test - No ktor.deployment.watch patterns specified, automatic reload is not active
+ø2019-09-02 15:58:11.102 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - Driver class com.mysql.jdbc.Driver found in Thread context class loader sun.misc.Launcher$AppClassLoader@2a139a55
+k2019-09-02 15:58:11.110 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - HikariPool-1 - configuration:
+s2019-09-02 15:58:11.114 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - allowPoolSuspension.............false
+s2019-09-02 15:58:11.114 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - autoCommit......................false
+r2019-09-02 15:58:11.114 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - catalog.........................none
+r2019-09-02 15:58:11.114 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - connectionInitSql...............none
+r2019-09-02 15:58:11.114 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - connectionTestQuery.............none
+s2019-09-02 15:58:11.114 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - connectionTimeout...............30000
+r2019-09-02 15:58:11.114 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - dataSource......................none
+r2019-09-02 15:58:11.115 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceClassName.............none
+r2019-09-02 15:58:11.115 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceJNDI..................none
+Å2019-09-02 15:58:11.116 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceProperties............{password=<masked>}
+Ö2019-09-02 15:58:11.116 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - driverClassName................."com.mysql.jdbc.Driver"
+p2019-09-02 15:58:11.116 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - healthCheckProperties...........{}
+r2019-09-02 15:58:11.116 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - healthCheckRegistry.............none
+t2019-09-02 15:58:11.117 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - idleTimeout.....................600000
+o2019-09-02 15:58:11.117 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - initializationFailTimeout.......1
+s2019-09-02 15:58:11.117 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - isolateInternalQueries..........false
+ö2019-09-02 15:58:11.117 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - jdbcUrl.........................jdbc:mysql://localhost/ktortest?useSSL=false
+o2019-09-02 15:58:11.117 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - leakDetectionThreshold..........0
+u2019-09-02 15:58:11.118 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - maxLifetime.....................1800000
+o2019-09-02 15:58:11.118 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - maximumPoolSize.................3
+r2019-09-02 15:58:11.118 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - metricRegistry..................none
+r2019-09-02 15:58:11.118 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - metricsTrackerFactory...........none
+o2019-09-02 15:58:11.118 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - minimumIdle.....................3
+v2019-09-02 15:58:11.118 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - password........................<masked>
+|2019-09-02 15:58:11.118 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - poolName........................"HikariPool-1"
+s2019-09-02 15:58:11.119 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - readOnly........................false
+s2019-09-02 15:58:11.119 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - registerMbeans..................false
+r2019-09-02 15:58:11.119 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - scheduledExecutor...............none
+r2019-09-02 15:58:11.119 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - schema..........................none
+v2019-09-02 15:58:11.119 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - threadFactory...................internal
+ã2019-09-02 15:58:11.120 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - transactionIsolation............"TRANSACTION_REPEATABLE_READ"
+s2019-09-02 15:58:11.120 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - username........................"fan"
+r2019-09-02 15:58:11.120 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - validationTimeout...............5000
+k2019-09-02 15:58:11.122 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - HikariPool-1 - configuration:
+s2019-09-02 15:58:11.124 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - allowPoolSuspension.............false
+s2019-09-02 15:58:11.124 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - autoCommit......................false
+r2019-09-02 15:58:11.124 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - catalog.........................none
+r2019-09-02 15:58:11.124 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - connectionInitSql...............none
+r2019-09-02 15:58:11.124 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - connectionTestQuery.............none
+s2019-09-02 15:58:11.125 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - connectionTimeout...............30000
+r2019-09-02 15:58:11.125 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - dataSource......................none
+r2019-09-02 15:58:11.125 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceClassName.............none
+r2019-09-02 15:58:11.125 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceJNDI..................none
+Å2019-09-02 15:58:11.125 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - dataSourceProperties............{password=<masked>}
+Ö2019-09-02 15:58:11.125 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - driverClassName................."com.mysql.jdbc.Driver"
+p2019-09-02 15:58:11.125 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - healthCheckProperties...........{}
+r2019-09-02 15:58:11.125 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - healthCheckRegistry.............none
+t2019-09-02 15:58:11.126 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - idleTimeout.....................600000
+o2019-09-02 15:58:11.126 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - initializationFailTimeout.......1
+s2019-09-02 15:58:11.126 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - isolateInternalQueries..........false
+ö2019-09-02 15:58:11.127 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - jdbcUrl.........................jdbc:mysql://localhost/ktortest?useSSL=false
+o2019-09-02 15:58:11.127 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - leakDetectionThreshold..........0
+u2019-09-02 15:58:11.127 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - maxLifetime.....................1800000
+o2019-09-02 15:58:11.127 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - maximumPoolSize.................3
+r2019-09-02 15:58:11.127 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - metricRegistry..................none
+r2019-09-02 15:58:11.127 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - metricsTrackerFactory...........none
+o2019-09-02 15:58:11.127 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - minimumIdle.....................3
+v2019-09-02 15:58:11.128 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - password........................<masked>
+|2019-09-02 15:58:11.128 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - poolName........................"HikariPool-1"
+s2019-09-02 15:58:11.128 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - readOnly........................false
+s2019-09-02 15:58:11.128 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - registerMbeans..................false
+r2019-09-02 15:58:11.128 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - scheduledExecutor...............none
+r2019-09-02 15:58:11.128 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - schema..........................none
+v2019-09-02 15:58:11.128 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - threadFactory...................internal
+ã2019-09-02 15:58:11.129 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - transactionIsolation............"TRANSACTION_REPEATABLE_READ"
+s2019-09-02 15:58:11.129 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - username........................"fan"
+r2019-09-02 15:58:11.129 [Test worker] DEBUG com.zaxxer.hikari.HikariConfig - validationTimeout...............5000
+l2019-09-02 15:58:11.131 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+ò2019-09-02 15:58:11.422 [Test worker] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.jdbc.JDBC4Connection@31588d7b
+q2019-09-02 15:58:11.424 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+û2019-09-02 15:58:11.541 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=1, active=0, idle=1, waiting=0)
+™2019-09-02 15:58:11.555 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.jdbc.JDBC4Connection@590411a2
+™2019-09-02 15:58:11.569 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.jdbc.JDBC4Connection@392beeed
+´2019-09-02 15:58:11.569 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - After adding stats (total=3, active=0, idle=3, waiting=0)
+b2019-09-02 15:58:12.069 [DefaultDispatcher-worker-1 @request#2] INFO  ktor.test - 200 OK: GET - /
+w2019-09-02 15:58:12.079 [Test worker] INFO  ktor.test - Application stopping: io.ktor.application.Application@6da47bf8
+v2019-09-02 15:58:12.079 [Test worker] INFO  ktor.test - Application stopped: io.ktor.application.Application@6da47bf8
