@@ -1,4 +1,4 @@
-package fan.zheyuan.ktorexposed
+package fan.zheyuan.ktorexposed.temp
 
 import io.ktor.application.*
 import io.ktor.response.*
@@ -25,23 +25,6 @@ import io.ktor.client.engine.cio.*
 @Suppress("unused") // Referenced in application.conf
 @kotlin.jvm.JvmOverloads
 fun Application.module(testing: Boolean = false) {
-    install(FreeMarker) {
-        templateLoader = ClassTemplateLoader(this::class.java.classLoader, "templates")
-    }
-
-    install(Locations) {
-    }
-
-    install(Sessions) {
-        cookie<MySession>("MY_SESSION") {
-            cookie.extensions["SameSite"] = "lax"
-        }
-    }
-
-    install(CallLogging) {
-        level = Level.INFO
-        filter { call -> call.request.path().startsWith("/") }
-    }
 
     install(ContentNegotiation) {
         jackson {
@@ -93,7 +76,14 @@ fun Application.module(testing: Boolean = false) {
         }
 
         get("/html-freemarker") {
-            call.respond(FreeMarkerContent("index.ftl", mapOf("data" to IndexData(listOf(1, 2, 3))), ""))
+            call.respond(FreeMarkerContent("index.ftl", mapOf("data" to IndexData(
+                listOf(
+                    1,
+                    2,
+                    3
+                )
+            )
+            ), ""))
         }
 
         get<MyLocation> {
