@@ -39,7 +39,7 @@
 <!-- //title -->
 <!-- content -->
 <div class="sub-main-w3">
-    <form action="" method="post">
+    <form action="login" method="post">
         <h2>Login Now
             <i class="fas fa-level-down-alt"></i>
         </h2>

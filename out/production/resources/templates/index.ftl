@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -15,7 +14,7 @@
     <link rel="stylesheet" href="css/font-awesome.min.css">
 
     <!-- Bootstrap CSS / Color Scheme -->
-    <link rel="stylesheet" href="css/default.css" id="theme-color">
+    <link rel="stylesheet" href="css/${color}.css" id="theme-color">
 </head>
 <body>
 
@@ -409,7 +408,7 @@
         </div>
         <div class="row mt-5">
             <div class="col-12 text-center small-xl">
-                Copyright &copy; 2019.Company name All rights reserved.<a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>
+                <p>Copyright &copy; 2019 All rights reserved.</p>
             </div>
         </div>
     </div>
@@ -420,8 +419,8 @@
     <i class="fa fa-angle-up" aria-hidden="true"></i>
 </div>
 
-<!-- theme switcher (FOR DEMO ONLY - REMOVE FROM PRODUCTION)
-<div class="switcher-wrap">
+<!-- theme switcher (FOR DEMO ONLY - REMOVE FROM PRODUCTION) -->
+<#--<div class="switcher-wrap">
     <div class="switcher-trigger">
         <span class="fa fa-gear"></span>
     </div>
@@ -441,8 +440,7 @@
         </ul>
         <p>These are just demo colors. You can <b>easily</b> create your own color scheme.</p>
     </div>
-</div>
--->
+</div>-->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="js/jquery-3.2.1.min.js"></script>
 <script src="js/popper.min.js"></script>

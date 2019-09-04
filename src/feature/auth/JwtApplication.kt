@@ -3,10 +3,13 @@ package fan.zheyuan.ktorexposed.feature.auth
 import com.auth0.jwt.JWT
 import com.auth0.jwt.JWTVerifier
 import com.auth0.jwt.algorithms.Algorithm
+import fan.zheyuan.ktorexposed.views.templates.ThemeColor
+import fan.zheyuan.ktorexposed.views.templates.total
 import freemarker.cache.ClassTemplateLoader
 import io.ktor.application.Application
 import io.ktor.application.call
 import io.ktor.application.install
+import io.ktor.application.log
 import io.ktor.auth.Authentication
 import io.ktor.auth.authenticate
 import io.ktor.auth.authentication
@@ -22,6 +25,7 @@ import io.ktor.http.content.files
 import io.ktor.http.content.resources
 import io.ktor.http.content.static
 import io.ktor.http.content.staticRootFolder
+import io.ktor.request.receiveParameters
 import io.ktor.response.respond
 import io.ktor.response.respondRedirect
 import io.ktor.response.respondText
@@ -31,6 +35,7 @@ import kotlinx.html.head
 import kotlinx.html.p
 import kotlinx.html.title
 import java.io.File
+import kotlin.random.Random
 
 fun Application.jwtApplication() {
     val issuer = environment.config.property("jwt.domain").getString()
@@ -64,11 +69,18 @@ fun Application.jwtApplication() {
                     call.respond(FreeMarkerContent("login.ftl", mapOf("userId" to "fanzheuan"), ""))
                 }
                 post {
+                    val posts = call.receiveParameters()
+                    log.info("login ${posts["Name"]} ${posts["Password"]}")
                     call.respondRedirect("index")
                 }
             }
             get("index") {
-                call.respond(FreeMarkerContent("index.ftl", mapOf("userId" to "fanzheuan"), ""))
+                var color: String = ThemeColor.PINK.color
+                val random = Random.nextInt(total)
+                ThemeColor.values().forEachIndexed { id, theme ->
+                    if (id == random) color = theme.color
+                }
+                call.respond(FreeMarkerContent("index.ftl", mapOf("userId" to "fanzheuan", "color" to color), ""))
             }
 
             get {
