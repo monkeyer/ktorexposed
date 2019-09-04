@@ -1,5 +1,6 @@
 package fan.zheyuan.ktorexposed.model
 
+import org.jetbrains.exposed.dao.IntIdTable
 import org.jetbrains.exposed.sql.Table
 
 object Widgets : Table() {
@@ -7,6 +8,17 @@ object Widgets : Table() {
     val name = varchar("name", 255)
     val quantity = integer("quantity")
     val dateUpdated = long("dateUpdated")
+}
+
+object Users : Table() {
+    val id = varchar("id", 10).primaryKey() // Column<String>
+    val name = varchar("name", length = 50) // Column<String>
+    val cityId = (integer("city_id") references Cities.id).nullable() // Column<Int?>
+}
+
+object Cities : Table() {
+    val id = integer("id").autoIncrement().primaryKey() // Column<Int>
+    val name = varchar("name", 50) // Column<String>
 }
 
 data class Widget(

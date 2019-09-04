@@ -47,11 +47,10 @@ fun Route.widget(widgetService: WidgetService) {
 
     }
 
-    val mapper = jacksonObjectMapper().apply {
+    /*val mapper = jacksonObjectMapper().apply {
         setSerializationInclusion(JsonInclude.Include.NON_NULL)
     }
-
-    /*webSocket("/updates") {
+    webSocket("/updates") {
         try {
             widgetService.addChangeListener(this.hashCode()) {
                 outgoing.send(Frame.Text(mapper.writeValueAsString(it)))
