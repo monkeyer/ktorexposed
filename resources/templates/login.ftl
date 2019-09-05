@@ -48,14 +48,14 @@
                 <i class="fas fa-user"></i>
                 Username
             </label>
-            <input placeholder="" name="Name" type="text" required="" value="${userId}">
+            <input placeholder="" name="lname" type="text" required="" value="${userId}">
         </div>
         <div class="form-style-agile">
             <label>
                 <i class="fas fa-unlock-alt"></i>
                 Password
             </label>
-            <input placeholder="" name="Password" type="password" required="">
+            <input placeholder="" name="lpassword" type="password" required="">
         </div>
         <!-- checkbox -->
         <div class="wthree-text">

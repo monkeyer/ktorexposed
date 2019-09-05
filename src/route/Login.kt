@@ -7,7 +7,9 @@ import io.ktor.application.application
 import io.ktor.application.call
 import io.ktor.application.log
 import io.ktor.freemarker.FreeMarkerContent
+import io.ktor.http.Parameters
 import io.ktor.request.receive
+import io.ktor.request.receiveMultipart
 import io.ktor.request.receiveParameters
 import io.ktor.response.respond
 import io.ktor.response.respondRedirect
@@ -21,14 +23,13 @@ fun Route.login() {
     route("/login") {
 
         get {
-            call.respond(FreeMarkerContent("login.ftl", mapOf("userId" to "fanzheuan"), ""))
+            call.respond(FreeMarkerContent("login.ftl", mapOf("userId" to "fanzheyuan"), ""))
         }
         post {
-            val user = call.receive<User>()
-            val signed = sign(user.name, application.property("jwt.domain"), application.property("jwt.expiration").toInt())
-            application.log.info(user.name)
-            call.respond(user)
-//            call.respondRedirect("index")
+            val user = call.receive<Parameters>()
+            val signed = sign(user["lname"].toString(), application.property("jwt.domain"), application.property("jwt.expiration").toInt())
+//            call.respond(signed)
+            call.respondRedirect("index")
         }
     }
 }
