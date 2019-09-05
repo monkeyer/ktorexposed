@@ -4,39 +4,47 @@ import com.auth0.jwt.JWT
 import com.auth0.jwt.JWTVerifier
 import com.auth0.jwt.algorithms.Algorithm
 import com.fasterxml.jackson.databind.SerializationFeature
-import fan.zheyuan.ktorexposed.temp.MySession
+import fan.zheyuan.ktorexposed.hashKey
 import freemarker.cache.ClassTemplateLoader
 import io.ktor.application.Application
 import io.ktor.application.install
 import io.ktor.auth.Authentication
+import io.ktor.auth.UserIdPrincipal
 import io.ktor.auth.jwt.JWTPrincipal
 import io.ktor.auth.jwt.jwt
 import io.ktor.features.CallLogging
 import io.ktor.features.ContentNegotiation
 import io.ktor.freemarker.FreeMarker
 import io.ktor.jackson.jackson
+import io.ktor.locations.KtorExperimentalLocationsAPI
 import io.ktor.locations.Locations
 import io.ktor.request.path
+import io.ktor.sessions.SessionTransportTransformerMessageAuthentication
 import io.ktor.sessions.Sessions
 import io.ktor.sessions.cookie
+import io.ktor.util.KtorExperimentalAPI
 import org.slf4j.event.Level
+import java.util.*
 
+@KtorExperimentalAPI
+@KtorExperimentalLocationsAPI
 fun Application.configureApplication() {
 
     val issuer = environment.config.property("jwt.domain").getString()
     val audience = environment.config.property("jwt.audience").getString()
     val realm = environment.config.property("jwt.realm").getString()
+    val validityInMs = environment.config.property("jwt.expiration").getString().toInt()
+    val secret_key = environment.config.property("jwt.secret_key").getString()
 
     install(FreeMarker) {
         templateLoader = ClassTemplateLoader(this::class.java.classLoader, "templates")
     }
 
-    install(Locations) {
-    }
+    install(Locations)
 
     install(Sessions) {
-        cookie<MySession>("MY_SESSION") {
-            cookie.extensions["SameSite"] = "lax"
+        cookie<SiteSession>("SESSION") {
+            transform(SessionTransportTransformerMessageAuthentication(hashKey))
         }
     }
 
@@ -45,11 +53,12 @@ fun Application.configureApplication() {
         jwt {
             verifier(jwtVerifier)
             this.realm = realm
-            validate { credential ->
-                if (credential.payload.audience.contains(audience))
-                    JWTPrincipal(credential.payload)
-                else null
-            }
+            validate { UserIdPrincipal(it.payload.getClaim("name").asString()) }
+//            validate { credential ->
+//                if (credential.payload.audience.contains(audience))
+//                    JWTPrincipal(credential.payload)
+//                else null
+//            }
         }
     }
 
@@ -72,3 +81,15 @@ private fun makeJwtVerifier(issuer: String, audience: String): JWTVerifier =
         .withAudience(audience)
         .withIssuer(issuer)
         .build()
+
+private fun makeToken(name: String, issuer: String, validityInMs: Int): String = JWT.create()
+    .withSubject("Authentication")
+    .withIssuer(issuer)
+    .withClaim("name", name)
+    .withExpiresAt(getExpiration(validityInMs))
+    .sign(algorithm)
+
+private fun getExpiration(validityInMs: Int) = Date(System.currentTimeMillis() + validityInMs)
+
+fun sign(name: String, issuer: String, validityInMs: Int): Map<String, String> = mapOf("token" to makeToken(name, issuer, validityInMs))
+data class SiteSession(val userId: String = "")
