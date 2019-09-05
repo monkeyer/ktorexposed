@@ -53,7 +53,7 @@ fun Application.configureApplication() {
     install(Locations)
     install(StatusPages) {
         status(HttpStatusCode.NotFound) {
-            call.respond(FreeMarkerContent("404.ftl", mapOf("userId" to ""), ""))
+            call.respond(FreeMarkerContent("404.ftl", mapOf("userId" to "fanzheyuan"), ""))
         }
         status(HttpStatusCode.Unauthorized) {
             call.respond(
