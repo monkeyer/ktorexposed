@@ -31,7 +31,7 @@ import java.util.*
 @KtorExperimentalLocationsAPI
 fun Application.configureApplication() {
 
-    val issuer = this.property("jwt.domain")
+    val issuer = property("jwt.domain")
     val audience = property("jwt.audience")
     val realm = property("jwt.realm")
     val validityInMs = property("jwt.expiration").toInt()
