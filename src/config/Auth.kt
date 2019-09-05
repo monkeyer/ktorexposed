@@ -6,10 +6,10 @@ import com.auth0.jwt.algorithms.Algorithm
 import java.util.*
 
 object Auth {
-    private val SECRET_KEY = "secret"
+    private const val SECRET_KEY = "zAP5MBA4B4Ijz0MZaS48"
     private val algorithm = Algorithm.HMAC512(SECRET_KEY)
-    private val issuer = "ktor.io"
-    private val validityInMs = 3600*1000 * 10 // 10 hours
+    private const val issuer = "ktor.io"
+    private const val validityInMs = 3600*1000 * 10 // 10 hours
     
     fun makeJwtVerifier(): JWTVerifier = JWT
         .require(algorithm)
