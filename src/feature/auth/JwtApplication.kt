@@ -21,20 +21,8 @@ fun Application.jwtApplication() {
     install(Routing) {
         route("/") {
 
-
-
-
             get {
                 call.respondText("demo")
-            }
-            authenticate {
-                route("/who") {
-                    handle {
-                        val principal = call.authentication.principal<JWTPrincipal>()
-                        val subjectString = principal!!.payload.subject.removePrefix("auth0|")
-                        call.respondText("Success, $subjectString")
-                    }
-                }
             }
         }
     }

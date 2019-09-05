@@ -5,6 +5,7 @@ import com.auth0.jwt.JWTVerifier
 import com.auth0.jwt.algorithms.Algorithm
 import com.fasterxml.jackson.databind.SerializationFeature
 import fan.zheyuan.ktorexposed.hashKey
+import fan.zheyuan.ktorexposed.property
 import freemarker.cache.ClassTemplateLoader
 import io.ktor.application.Application
 import io.ktor.application.install
@@ -30,11 +31,11 @@ import java.util.*
 @KtorExperimentalLocationsAPI
 fun Application.configureApplication() {
 
-    val issuer = environment.config.property("jwt.domain").getString()
-    val audience = environment.config.property("jwt.audience").getString()
-    val realm = environment.config.property("jwt.realm").getString()
-    val validityInMs = environment.config.property("jwt.expiration").getString().toInt()
-    val secret_key = environment.config.property("jwt.secret_key").getString()
+    val issuer = this.property("jwt.domain")
+    val audience = property("jwt.audience")
+    val realm = property("jwt.realm")
+    val validityInMs = property("jwt.expiration").toInt()
+    val secret_key = property("jwt.secret_key")
 
     install(FreeMarker) {
         templateLoader = ClassTemplateLoader(this::class.java.classLoader, "templates")

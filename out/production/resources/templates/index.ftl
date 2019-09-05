@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -408,7 +409,7 @@
         </div>
         <div class="row mt-5">
             <div class="col-12 text-center small-xl">
-                <p>Copyright &copy; 2019 All rights reserved.</p>
+                Copyright &copy; 2019 All rights reserved.
             </div>
         </div>
     </div>
@@ -419,8 +420,8 @@
     <i class="fa fa-angle-up" aria-hidden="true"></i>
 </div>
 
-<!-- theme switcher (FOR DEMO ONLY - REMOVE FROM PRODUCTION) -->
-<#--<div class="switcher-wrap">
+<!-- theme switcher (FOR DEMO ONLY - REMOVE FROM PRODUCTION)
+<div class="switcher-wrap">
     <div class="switcher-trigger">
         <span class="fa fa-gear"></span>
     </div>
@@ -440,9 +441,10 @@
         </ul>
         <p>These are just demo colors. You can <b>easily</b> create your own color scheme.</p>
     </div>
-</div>-->
+</div>
+-->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/feather.min.js"></script>

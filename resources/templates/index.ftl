@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="css/font-awesome.min.css">
 
     <!-- Bootstrap CSS / Color Scheme -->
-    <link rel="stylesheet" href="css/default.css" id="theme-color">
+    <link rel="stylesheet" href="css/${color}.css" id="theme-color">
 </head>
 <body>
 
@@ -409,7 +409,7 @@
         </div>
         <div class="row mt-5">
             <div class="col-12 text-center small-xl">
-                Copyright &copy; 2019.Company name All rights reserved.<a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>
+                Copyright &copy; 2019 All rights reserved.
             </div>
         </div>
     </div>
@@ -444,7 +444,7 @@
 </div>
 -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/feather.min.js"></script>

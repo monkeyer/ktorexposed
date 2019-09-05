@@ -35,7 +35,7 @@
 </div>
 <!-- //bg effect -->
 <!-- title -->
-<h1>用户登录中心</h1>
+<h1>用户中心</h1>
 <!-- //title -->
 <!-- content -->
 <div class="sub-main-w3">
