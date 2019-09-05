@@ -7,7 +7,9 @@ import io.ktor.application.Application
 import io.ktor.http.content.resources
 import io.ktor.http.content.static
 import io.ktor.routing.routing
+import io.ktor.util.KtorExperimentalAPI
 
+@KtorExperimentalAPI
 fun Application.configureRoute() {
     routing {
         statics()

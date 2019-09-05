@@ -5,6 +5,7 @@ import fan.zheyuan.ktorexposed.model.User
 import fan.zheyuan.ktorexposed.property
 import io.ktor.application.application
 import io.ktor.application.call
+import io.ktor.application.log
 import io.ktor.freemarker.FreeMarkerContent
 import io.ktor.request.receive
 import io.ktor.request.receiveParameters
@@ -17,7 +18,6 @@ import kotlin.math.sign
 @KtorExperimentalAPI
 fun Route.login() {
 
-
     route("/login") {
 
         get {
@@ -26,7 +26,9 @@ fun Route.login() {
         post {
             val user = call.receive<User>()
             val signed = sign(user.name, application.property("jwt.domain"), application.property("jwt.expiration").toInt())
-            call.respondRedirect("index")
+            application.log.info(user.name)
+            call.respond(user)
+//            call.respondRedirect("index")
         }
     }
 }
