@@ -15,9 +15,7 @@ import io.ktor.auth.UserIdPrincipal
 import io.ktor.auth.jwt.JWTPrincipal
 import io.ktor.auth.jwt.jwt
 import io.ktor.content.TextContent
-import io.ktor.features.CallLogging
-import io.ktor.features.ContentNegotiation
-import io.ktor.features.StatusPages
+import io.ktor.features.*
 import io.ktor.freemarker.FreeMarker
 import io.ktor.freemarker.FreeMarkerContent
 import io.ktor.http.ContentType
@@ -70,6 +68,12 @@ fun Application.configureApplication() {
         cookie<SiteSession>("SESSION") {
             transform(SessionTransportTransformerMessageAuthentication(hashKey))
         }
+    }
+    //support video
+    install(PartialContent) { }
+    install(Compression) {
+        default()
+        excludeContentType(ContentType.Video.Any)
     }
 
     install(Authentication) {

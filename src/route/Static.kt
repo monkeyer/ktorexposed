@@ -18,4 +18,7 @@ fun Route.statics() {
     static("img") {
         resources("files/img")
     }
+    static("upload") {
+        resources("files/upload")
+    }
 }
