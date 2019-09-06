@@ -9,6 +9,7 @@ import io.ktor.features.DefaultHeaders
 import io.ktor.html.respondHtml
 import io.ktor.routing.get
 import io.ktor.routing.routing
+import kotlinx.coroutines.ObsoleteCoroutinesApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.newFixedThreadPoolContext
 import kotlinx.coroutines.withContext
@@ -19,6 +20,7 @@ import kotlinx.html.title
 import java.util.*
 import kotlin.system.measureTimeMillis
 
+@ObsoleteCoroutinesApi
 val compute = newFixedThreadPoolContext(4, "compute")
 typealias DelayProvider = suspend (ms: Int) -> Unit
 
@@ -35,6 +37,7 @@ fun Application.asyncModule(random: Random = Random(), delayProvider: DelayProvi
     }
 }
 
+@ObsoleteCoroutinesApi
 private suspend fun ApplicationCall.respondHandlingLongCalculation(random: Random, delayProvider: DelayProvider, startTime: Long) {
     val queueTime = System.currentTimeMillis() - startTime
     var number = 0

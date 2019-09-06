@@ -33,7 +33,6 @@ import io.ktor.util.KtorExperimentalAPI
 import org.slf4j.event.Level
 import java.util.*
 
-private val verifier = Auth.makeJwtVerifier()
 
 @KtorExperimentalAPI
 @KtorExperimentalLocationsAPI
@@ -41,6 +40,7 @@ fun Application.configureApplication() {
 //    val issuer = property("jwt.domain")
 //    val audience = property("jwt.audience")
     val realm = property("jwt.realm")
+    val verifier = Auth.makeJwtVerifier()
 //    val validityInMs = property("jwt.expiration").toInt()
 //    val secret_key = property("jwt.secret_key")
 
