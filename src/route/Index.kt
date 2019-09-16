@@ -7,6 +7,7 @@ import io.ktor.auth.authenticate
 import io.ktor.auth.authentication
 import io.ktor.auth.jwt.JWTPrincipal
 import io.ktor.freemarker.FreeMarkerContent
+import io.ktor.http.ContentType
 import io.ktor.response.respond
 import io.ktor.response.respondText
 import io.ktor.routing.Route
@@ -15,13 +16,22 @@ import io.ktor.routing.route
 import kotlin.random.Random
 
 fun Route.index() {
+    get("/") {
+        call.respondText("test JWT")
+    }
     authenticate {
         route("/who") {
             handle {
                 val principal = call.authentication.principal<JWTPrincipal>()
-                val subjectString = principal!!.payload.subject.removePrefix("auth0|")
+                val subjectString = principal!!.payload.subject
                 call.respondText("Success, $subjectString")
             }
+        }
+    }
+    
+    route("testJson") {
+        get {
+            call.respond(JTest("V2VmI+XBuOB2lKZoFK/MjRdabXDyRW7y7WYa7aE6UTiOnIjtoIpF/aJopJ2znYT0", "1565072392"))
         }
     }
     route("/index") {
@@ -35,3 +45,6 @@ fun Route.index() {
         }
     }
 }
+
+data class JTest(val vs: String, val vsv: String)
+

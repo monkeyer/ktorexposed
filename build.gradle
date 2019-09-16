@@ -44,6 +44,7 @@ dependencies {
     compile "io.ktor:ktor-locations:$ktor_version"
     compile "io.ktor:ktor-server-sessions:$ktor_version"
     compile "io.ktor:ktor-jackson:$ktor_version"
+    compile "io.ktor:ktor-gson:$ktor_version"
     compile "io.ktor:ktor-websockets:$ktor_version"
     compile "io.ktor:ktor-client-core:$ktor_version"
     compile "io.ktor:ktor-client-core-jvm:$ktor_version"
@@ -53,6 +54,9 @@ dependencies {
     compile "io.ktor:ktor-auth:$ktor_version"
     compile "io.ktor:ktor-auth-jwt:$ktor_version"
     compile "io.ktor:ktor-client-apache:$ktor_version"
+
+    //kodein
+    compile 'org.kodein.di:kodein-di-generic-jvm:5.2.0'
 
     //database
 //    compile "com.h2database:h2:$h2_version"

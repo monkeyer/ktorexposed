@@ -3,7 +3,10 @@ package fan.zheyuan.ktorexposed.config
 import com.auth0.jwt.JWT
 import com.auth0.jwt.JWTVerifier
 import com.auth0.jwt.algorithms.Algorithm
+import com.auth0.jwt.interfaces.Payload
 import com.fasterxml.jackson.databind.SerializationFeature
+import com.google.gson.GsonBuilder
+import fan.zheyuan.ktorexposed.config.Auth.makeJwtVerifier
 import fan.zheyuan.ktorexposed.hashKey
 import fan.zheyuan.ktorexposed.property
 import freemarker.cache.ClassTemplateLoader
@@ -26,14 +29,22 @@ import io.ktor.locations.KtorExperimentalLocationsAPI
 import io.ktor.locations.Locations
 import io.ktor.request.path
 import io.ktor.response.respond
+import io.ktor.response.respondRedirect
 import io.ktor.sessions.SessionTransportTransformerMessageAuthentication
 import io.ktor.sessions.Sessions
 import io.ktor.sessions.cookie
 import io.ktor.util.KtorExperimentalAPI
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.channels.broadcast
+import kotlinx.coroutines.channels.produce
+import kotlinx.coroutines.delay
+import org.apache.commons.codec.binary.Base64
 import org.slf4j.event.Level
+import java.nio.charset.Charset
 import java.util.*
 
 
+@ExperimentalCoroutinesApi
 @KtorExperimentalAPI
 @KtorExperimentalLocationsAPI
 fun Application.configureApplication() {
@@ -54,13 +65,10 @@ fun Application.configureApplication() {
             call.respond(FreeMarkerContent("404.ftl", mapOf("userId" to "fanzheyuan"), ""))
         }
         status(HttpStatusCode.Unauthorized) {
-            call.respond(
-                TextContent(
-                    "${it.value} ${it.description}",
-                    ContentType.Text.Plain.withCharset(Charsets.UTF_8),
-                    it
-                )
-            )
+            call.respondRedirect("/login")
+        }
+        exception<AuthorizationException> {
+            call.respond(HttpStatusCode.Forbidden)
         }
     }
 
@@ -78,12 +86,17 @@ fun Application.configureApplication() {
 
     install(Authentication) {
         //        val jwtVerifier = makeJwtVerifier(issuer, audience)
+        val jwtVerifier = makeJwtVerifier()
         jwt {
-            verifier(verifier)
+            verifier(jwtVerifier)
+            validate { credential ->
+                JWTPrincipal(SubjectDecodingPayload(credential.payload))
+            }
+            /*verifier(verifier)
             this.realm = realm
             validate {
                 UserIdPrincipal(it.payload.getClaim("name").asString())
-            }
+            }*/
 //            validate { credential ->
 //                if (credential.payload.audience.contains(audience))
 //                    JWTPrincipal(credential.payload)
@@ -103,7 +116,9 @@ fun Application.configureApplication() {
             writerWithDefaultPrettyPrinter()
         }
     }
+
 }
+
 
 /*private val algorithm = Algorithm.HMAC256("default_secret")
 private fun makeJwtVerifier(issuer: String, audience: String): JWTVerifier =
@@ -123,3 +138,16 @@ private fun getExpiration(validityInMs: Int) = Date(System.currentTimeMillis() +
 
 fun sign(name: String, issuer: String, validityInMs: Int): Map<String, String> = mapOf("token" to makeToken(name, issuer, validityInMs))*/
 data class SiteSession(val userId: String = "")
+class AuthorizationException : RuntimeException()
+class SubjectDecodingPayload(private val delegate: Payload) : Payload by delegate {
+    private data class Provider(val providerID: String, val providerKey: String)
+
+    private val decodedSubject: String by lazy {
+        val encodedSubject = delegate.subject
+        val decodedSubject = Base64.decodeBase64(encodedSubject).toString(Charset.forName("UTF-8"))
+        val provider = GsonBuilder().create().fromJson<Provider>(decodedSubject, Provider::class.java)
+        provider.providerKey
+    }
+
+    override fun getSubject(): String = decodedSubject
+}
