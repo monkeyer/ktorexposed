@@ -4,11 +4,14 @@ import com.auth0.jwt.JWT
 import com.auth0.jwt.JWTVerifier
 import com.auth0.jwt.algorithms.Algorithm
 import com.auth0.jwt.interfaces.Payload
+import com.datastax.oss.driver.api.core.CqlSession
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.google.gson.GsonBuilder
 import fan.zheyuan.ktorexposed.config.Auth.makeJwtVerifier
 import fan.zheyuan.ktorexposed.hashKey
 import fan.zheyuan.ktorexposed.property
+import fan.zheyuan.ktorexposed.repository.PersonRepository
+import fan.zheyuan.ktorexposed.repository.cassandraSession
 import freemarker.cache.ClassTemplateLoader
 import io.ktor.application.Application
 import io.ktor.application.call
@@ -39,6 +42,11 @@ import kotlinx.coroutines.channels.broadcast
 import kotlinx.coroutines.channels.produce
 import kotlinx.coroutines.delay
 import org.apache.commons.codec.binary.Base64
+import org.kodein.di.Kodein
+import org.kodein.di.generic.bind
+import org.kodein.di.generic.instance
+import org.kodein.di.generic.singleton
+import org.kodein.di.ktor.kodein
 import org.slf4j.event.Level
 import java.nio.charset.Charset
 import java.util.*

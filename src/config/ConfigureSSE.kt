@@ -2,6 +2,7 @@ package fan.zheyuan.ktorexposed.config
 
 import io.ktor.application.Application
 import io.ktor.application.ApplicationCall
+import io.ktor.application.ApplicationCallPipeline
 import io.ktor.application.call
 import io.ktor.http.CacheControl
 import io.ktor.http.ContentType

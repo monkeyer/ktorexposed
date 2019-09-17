@@ -2,6 +2,7 @@ package fan.zheyuan.ktorexposed.service
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
+import fan.zheyuan.ktorexposed.dao.People
 import fan.zheyuan.ktorexposed.model.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -16,7 +17,7 @@ object DatabaseFactory {
         db = Database.connect(hikari())
         db.useNestedTransactions = true
         transaction {
-            create(Widgets, Cities, Users, Node, NodeToNodes)
+            create(Widgets, Cities, Users, People)
 //            drop(Cities, Users)
         }
 //        testDB()

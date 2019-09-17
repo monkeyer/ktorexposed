@@ -8,6 +8,8 @@ import io.ktor.auth.authentication
 import io.ktor.auth.jwt.JWTPrincipal
 import io.ktor.freemarker.FreeMarkerContent
 import io.ktor.http.ContentType
+import io.ktor.locations.KtorExperimentalLocationsAPI
+import io.ktor.locations.Location
 import io.ktor.response.respond
 import io.ktor.response.respondText
 import io.ktor.routing.Route
@@ -47,4 +49,3 @@ fun Route.index() {
 }
 
 data class JTest(val vs: String, val vsv: String)
-
