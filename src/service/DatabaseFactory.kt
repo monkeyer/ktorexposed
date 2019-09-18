@@ -17,7 +17,7 @@ object DatabaseFactory {
         db = Database.connect(hikari())
         db.useNestedTransactions = true
         transaction {
-            create(Widgets, Cities, Users, People)
+            create(Widgets, Cities, Users)
 //            drop(Cities, Users)
         }
 //        testDB()

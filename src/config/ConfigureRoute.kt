@@ -11,12 +11,12 @@ import org.kodein.di.ktor.kodein
 @KtorExperimentalAPI
 fun Application.configureRoute() {
     val personRepository by kodein().instance<PersonRepository>()
-//    println(personRepository.VERSION)
+    println(personRepository.VERSION)
     routing {
         statics()
         login()
         index()
         video()
-//        people(personRepository)
+        people(personRepository)
     }
 }
