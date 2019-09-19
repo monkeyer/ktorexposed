@@ -10,8 +10,10 @@ import com.google.gson.GsonBuilder
 import fan.zheyuan.ktorexposed.config.Auth.makeJwtVerifier
 import fan.zheyuan.ktorexposed.hashKey
 import fan.zheyuan.ktorexposed.property
-import fan.zheyuan.ktorexposed.repository.PersonRepository
-import fan.zheyuan.ktorexposed.repository.cassandraSession
+import fan.zheyuan.ktorexposed.domain.repository.PersonRepository
+import fan.zheyuan.ktorexposed.domain.repository.cassandraSession
+import fan.zheyuan.ktorexposed.utils.JwtProvider
+import fan.zheyuan.ktorexposed.web.controllers.UserController
 import freemarker.cache.ClassTemplateLoader
 import io.ktor.application.Application
 import io.ktor.application.call
@@ -56,12 +58,9 @@ import java.util.*
 @KtorExperimentalAPI
 @KtorExperimentalLocationsAPI
 fun Application.configureApplication() {
-//    val issuer = property("jwt.domain")
-//    val audience = property("jwt.audience")
-    val realm = property("jwt.realm")
-    val verifier = Auth.makeJwtVerifier()
-//    val validityInMs = property("jwt.expiration").toInt()
-//    val secret_key = property("jwt.secret_key")
+
+//    val userController by ConfigureModules.kodein.instance<UserController>()
+    val userController by ConfigureModules.kodein.instance<UserController>()
 
     install(FreeMarker) {
         templateLoader = ClassTemplateLoader(this::class.java.classLoader, "templates")
@@ -93,23 +92,14 @@ fun Application.configureApplication() {
     }
 
     install(Authentication) {
-        //        val jwtVerifier = makeJwtVerifier(issuer, audience)
-        val jwtVerifier = makeJwtVerifier()
         jwt {
-            verifier(jwtVerifier)
+            verifier(JwtProvider.verifier)
+            authSchemes("Token")
             validate { credential ->
-                JWTPrincipal(SubjectDecodingPayload(credential.payload))
+                if (credential.payload.audience.contains(JwtProvider.audience)) {
+                    userController.getUserByEmail(credential.payload.claims["email"]?.asString())
+                } else null
             }
-            /*verifier(verifier)
-            this.realm = realm
-            validate {
-                UserIdPrincipal(it.payload.getClaim("name").asString())
-            }*/
-//            validate { credential ->
-//                if (credential.payload.audience.contains(audience))
-//                    JWTPrincipal(credential.payload)
-//                else null
-//            }
         }
     }
 
@@ -127,24 +117,6 @@ fun Application.configureApplication() {
 
 }
 
-
-/*private val algorithm = Algorithm.HMAC256("default_secret")
-private fun makeJwtVerifier(issuer: String, audience: String): JWTVerifier =
-    JWT.require(algorithm)
-        .withAudience(audience)
-        .withIssuer(issuer)
-        .build()
-
-private fun makeToken(name: String, issuer: String, validityInMs: Int): String = JWT.create()
-    .withSubject("Authentication")
-    .withIssuer(issuer)
-    .withClaim("name", name)
-    .withExpiresAt(getExpiration(validityInMs))
-    .sign(algorithm)
-
-private fun getExpiration(validityInMs: Int) = Date(System.currentTimeMillis() + validityInMs)
-
-fun sign(name: String, issuer: String, validityInMs: Int): Map<String, String> = mapOf("token" to makeToken(name, issuer, validityInMs))*/
 data class SiteSession(val userId: String = "")
 class AuthorizationException : RuntimeException()
 class SubjectDecodingPayload(private val delegate: Payload) : Payload by delegate {

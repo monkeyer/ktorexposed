@@ -1,14 +1,15 @@
-package fan.zheyuan.ktorexposed.service
+package fan.zheyuan.ktorexposed.domain.service
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
-import fan.zheyuan.ktorexposed.dao.People
-import fan.zheyuan.ktorexposed.model.*
+import fan.zheyuan.ktorexposed.domain.model.Cities
+import fan.zheyuan.ktorexposed.domain.model.Nodes
+import fan.zheyuan.ktorexposed.domain.model.WidgetUsers
+import fan.zheyuan.ktorexposed.domain.model.Widgets
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.SchemaUtils.create
-import org.jetbrains.exposed.sql.SchemaUtils.drop
 import org.jetbrains.exposed.sql.transactions.transaction
 
 object DatabaseFactory {
@@ -17,7 +18,11 @@ object DatabaseFactory {
         db = Database.connect(hikari())
         db.useNestedTransactions = true
         transaction {
-            create(Widgets, Cities, Users)
+            create(
+                Widgets,
+                Cities,
+                WidgetUsers
+            )
 //            drop(Cities, Users)
         }
 //        testDB()
@@ -45,41 +50,41 @@ object DatabaseFactory {
                 it[name] = "Prague"
             }
 
-            Users.insert {
+            WidgetUsers.insert {
                 it[id] = "andrey"
                 it[name] = "Andrey"
                 it[cityId] = saintPetersburgId
             }
 
-            Users.insert {
+            WidgetUsers.insert {
                 it[id] = "sergey"
                 it[name] = "Sergey"
                 it[cityId] = munichId
             }
 
-            Users.insert {
+            WidgetUsers.insert {
                 it[id] = "eugene"
                 it[name] = "Eugene"
                 it[cityId] = munichId
             }
 
-            Users.insert {
+            WidgetUsers.insert {
                 it[id] = "alex"
                 it[name] = "Alex"
                 it[cityId] = null
             }
 
-            Users.insert {
+            WidgetUsers.insert {
                 it[id] = "smth"
                 it[name] = "Something"
                 it[cityId] = null
             }
 
-            Users.update({Users.id eq "alex"}) {
+            WidgetUsers.update({ WidgetUsers.id eq "alex"}) {
                 it[name] = "Alexey"
             }
 
-            Users.deleteWhere{Users.name like "%thing"}
+            WidgetUsers.deleteWhere{ WidgetUsers.name like "%thing"}
 
             println("All cities:")
 
@@ -88,30 +93,33 @@ object DatabaseFactory {
             }
 
             println("Manual join:")
-            (Users innerJoin Cities).slice(Users.name, Cities.name).
-                select {(Users.id.eq("andrey") or Users.name.eq("Sergey")) and
-                        Users.id.eq("sergey") and Users.cityId.eq(Cities.id)}.forEach {
-                println("${it[Users.name]} lives in ${it[Cities.name]}")
+            (WidgetUsers innerJoin Cities).slice(WidgetUsers.name, Cities.name).
+                select {(WidgetUsers.id.eq("andrey") or WidgetUsers.name.eq("Sergey")) and
+                        WidgetUsers.id.eq("sergey") and WidgetUsers.cityId.eq(
+                    Cities.id)}.forEach {
+                println("${it[WidgetUsers.name]} lives in ${it[Cities.name]}")
             }
 
             println("Join with foreign key:")
 
 
-            (Users innerJoin Cities).slice(Users.name, Users.cityId, Cities.name).
-                select {Cities.name.eq("St. Petersburg") or Users.cityId.isNull()}.forEach {
-                if (it[Users.cityId] != null) {
-                    println("${it[Users.name]} lives in ${it[Cities.name]}")
+            (WidgetUsers innerJoin Cities).slice(WidgetUsers.name, WidgetUsers.cityId, Cities.name).
+                select { Cities.name.eq("St. Petersburg") or WidgetUsers.cityId.isNull()}.forEach {
+                if (it[WidgetUsers.cityId] != null) {
+                    println("${it[WidgetUsers.name]} lives in ${it[Cities.name]}")
                 }
                 else {
-                    println("${it[Users.name]} lives nowhere")
+                    println("${it[WidgetUsers.name]} lives nowhere")
                 }
             }
 
             println("Functions and group by:")
 
-            ((Cities innerJoin Users).slice(Cities.name, Users.id.count()).selectAll().groupBy(Cities.name)).forEach {
+            ((Cities innerJoin WidgetUsers).slice(
+                Cities.name, WidgetUsers.id.count()).selectAll().groupBy(
+                Cities.name)).forEach {
                 val cityName = it[Cities.name]
-                val userCount = it[Users.id.count()]
+                val userCount = it[WidgetUsers.id.count()]
 
                 if (userCount > 0) {
                     println("$userCount user(s) live(s) in $cityName")

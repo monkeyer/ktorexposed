@@ -1,4 +1,4 @@
-package fan.zheyuan.ktorexposed.model
+package fan.zheyuan.ktorexposed.domain.model
 
 import org.jetbrains.exposed.dao.EntityID
 import org.jetbrains.exposed.dao.IntEntity
@@ -17,6 +17,12 @@ class Nodes(id: EntityID<Int>) : IntEntity(id) {
     companion object : IntEntityClass<Nodes>(Node)
 
     var name by Node.name
-    var parents by Nodes.via(NodeToNodes.child, NodeToNodes.parent)
-    var children by Nodes.via(NodeToNodes.parent, NodeToNodes.child)
+    var parents by Nodes.via(
+        NodeToNodes.child,
+        NodeToNodes.parent
+    )
+    var children by Nodes.via(
+        NodeToNodes.parent,
+        NodeToNodes.child
+    )
 }

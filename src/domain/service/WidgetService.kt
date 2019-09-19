@@ -1,7 +1,7 @@
-package fan.zheyuan.ktorexposed.service
+package fan.zheyuan.ktorexposed.domain.service
 
-import fan.zheyuan.ktorexposed.model.*
-import fan.zheyuan.ktorexposed.service.DatabaseFactory.dbQuery
+import fan.zheyuan.ktorexposed.domain.model.*
+import fan.zheyuan.ktorexposed.domain.service.DatabaseFactory.dbQuery
 import org.jetbrains.exposed.sql.*
 
 class WidgetService {

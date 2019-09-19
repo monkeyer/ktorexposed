@@ -15,8 +15,8 @@ import io.ktor.sessions.*
 import io.ktor.features.*
 import org.slf4j.event.*
 import com.fasterxml.jackson.databind.*
-import fan.zheyuan.ktorexposed.service.DatabaseFactory
-import fan.zheyuan.ktorexposed.service.WidgetService
+import fan.zheyuan.ktorexposed.domain.service.DatabaseFactory
+import fan.zheyuan.ktorexposed.domain.service.WidgetService
 import fan.zheyuan.ktorexposed.web.widget
 import io.ktor.jackson.*
 import io.ktor.client.*

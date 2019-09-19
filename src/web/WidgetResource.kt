@@ -2,8 +2,8 @@ package fan.zheyuan.ktorexposed.web
 
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import fan.zheyuan.ktorexposed.model.NewWidget
-import fan.zheyuan.ktorexposed.service.WidgetService
+import fan.zheyuan.ktorexposed.domain.model.NewWidget
+import fan.zheyuan.ktorexposed.domain.service.WidgetService
 import io.ktor.application.call
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.cio.websocket.Frame

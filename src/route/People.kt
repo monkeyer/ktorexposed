@@ -1,7 +1,7 @@
 package fan.zheyuan.ktorexposed.route
 
-import fan.zheyuan.ktorexposed.model.Person
-import fan.zheyuan.ktorexposed.repository.PersonRepository
+import fan.zheyuan.ktorexposed.domain.model.Person
+import fan.zheyuan.ktorexposed.domain.repository.PersonRepository
 import io.ktor.application.call
 import io.ktor.http.HttpStatusCode
 import io.ktor.request.receive
@@ -13,6 +13,7 @@ import java.util.*
 fun Route.people(personRepository: PersonRepository) {
     route("/people") {
         get {
+//            println(Person(UUID.randomUUID(), "dark", "knight", 18, "kotliner"))
             call.respond(HttpStatusCode.OK, personRepository.findAll())
         }
         get("/{id}") {

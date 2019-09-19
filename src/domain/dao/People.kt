@@ -1,4 +1,4 @@
-package fan.zheyuan.ktorexposed.dao
+package fan.zheyuan.ktorexposed.domain.dao
 
 import org.jetbrains.exposed.sql.Table
 

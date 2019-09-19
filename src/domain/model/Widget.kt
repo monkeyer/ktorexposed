@@ -1,4 +1,4 @@
-package fan.zheyuan.ktorexposed.model
+package fan.zheyuan.ktorexposed.domain.model
 
 import org.jetbrains.exposed.dao.IntIdTable
 import org.jetbrains.exposed.sql.Table
@@ -10,7 +10,7 @@ object Widgets : Table() {
     val dateUpdated = long("dateUpdated")
 }
 
-object Users : Table() {
+object WidgetUsers : Table() {
     val id = varchar("id", 10).primaryKey() // Column<String>
     val name = varchar("name", length = 50) // Column<String>
     val cityId = (integer("city_id") references Cities.id).nullable() // Column<Int?>

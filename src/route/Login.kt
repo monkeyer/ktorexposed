@@ -1,6 +1,7 @@
 package fan.zheyuan.ktorexposed.route
 
 import fan.zheyuan.ktorexposed.config.Auth
+import fan.zheyuan.ktorexposed.web.controllers.UserController
 import io.ktor.application.call
 import io.ktor.auth.UserIdPrincipal
 import io.ktor.auth.authenticate
@@ -38,6 +39,20 @@ fun Route.login() {
                 val user = call.authentication.principal<UserIdPrincipal>()
                 call.respondText("hi ${user?.name}, you are authenticated.", contentType = ContentType.Text.Plain)
             }
+        }
+    }
+}
+
+fun Route.users(userController: UserController) {
+    route("users") {
+        post { userController.register(this.context) }
+        post("login") { userController.login(this.context) }
+    }
+
+    route("user") {
+        authenticate {
+            get { userController.getCurrent(this.context) }
+            put { userController.update(this.context) }
         }
     }
 }

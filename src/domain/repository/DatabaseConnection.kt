@@ -1,4 +1,4 @@
-package fan.zheyuan.ktorexposed.repository
+package fan.zheyuan.ktorexposed.domain.repository
 
 import com.datastax.oss.driver.api.core.CqlSession
 

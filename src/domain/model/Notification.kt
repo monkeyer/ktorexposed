@@ -1,4 +1,4 @@
-package fan.zheyuan.ktorexposed.model
+package fan.zheyuan.ktorexposed.domain.model
 
 enum class ChangeType {
     CREATE, UPDATE, DELETE

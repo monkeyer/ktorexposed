@@ -1,9 +1,9 @@
-package fan.zheyuan.ktorexposed.repository
+package fan.zheyuan.ktorexposed.domain.repository
 
 import com.datastax.oss.driver.api.core.CqlSession
 import com.datastax.oss.driver.api.core.cql.Row
 import com.datastax.oss.driver.api.core.cql.SimpleStatementBuilder
-import fan.zheyuan.ktorexposed.model.Person
+import fan.zheyuan.ktorexposed.domain.model.Person
 import java.util.*
 
 class PersonRepository(private val session: CqlSession) {

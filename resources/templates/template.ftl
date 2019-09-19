@@ -1,4 +1,4 @@
-<#-- @ftlvariable name="user" type="fan.zheyuan.ktorexposed.model.User" -->
+<#-- @ftlvariable name="user" type="fan.zheyuan.ktorexposed.domain.model.User" -->
 
 <#macro mainLayout title="Welcome">
     <!DOCTYPE html>

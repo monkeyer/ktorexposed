@@ -4,8 +4,8 @@ import fan.zheyuan.ktorexposed.config.ConfigureSSE
 import fan.zheyuan.ktorexposed.config.configureApplication
 import fan.zheyuan.ktorexposed.config.configureDatabase
 import fan.zheyuan.ktorexposed.config.configureRoute
-import fan.zheyuan.ktorexposed.repository.PersonRepository
-import fan.zheyuan.ktorexposed.repository.cassandraSession
+import fan.zheyuan.ktorexposed.domain.repository.PersonRepository
+import fan.zheyuan.ktorexposed.domain.repository.cassandraSession
 import io.ktor.application.Application
 import io.ktor.locations.KtorExperimentalLocationsAPI
 import io.ktor.routing.Route
@@ -26,7 +26,11 @@ fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 fun Application.main() {
     kodein {
         bind<CqlSession>() with singleton { cassandraSession() }
-        bind<PersonRepository>() with singleton { PersonRepository(instance()) }
+        bind<PersonRepository>() with singleton {
+            PersonRepository(
+                instance()
+            )
+        }
     }
     configureApplication()
     configureDatabase()
